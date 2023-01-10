@@ -1,8 +1,8 @@
 import axios from "axios";
 import Image from "next/image";
 // import Meta from "../components/Meta";
-import { server } from "../../config";
-import Meta from "../../components/Meta";
+import { server } from "../../../config";
+import Meta from "../../../components/Meta";
 
 const Movie = ({ movie }) => {
     return (

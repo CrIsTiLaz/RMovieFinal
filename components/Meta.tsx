@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const Meta = ({ keywords, description, title }) => {
+const Meta = ({ keywords, description, title }: any) => {
     return (
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,8 +14,8 @@ const Meta = ({ keywords, description, title }) => {
 };
 
 Meta.defaultProps = {
-    title: 'WatchMe',
-    keywords: 'movie app, fre movies, popular movies',
+    title: 'RMovie',
+    keywords: 'movie app, free movies, popular movies',
     description: 'watch movie for free'
 }
 

@@ -19,51 +19,27 @@ const LiveTvIconBig = () => {
 export default function Header() {
     return (
         <Grid
+            container
+            justifyContent="space-between"
+            alignItems="center"
             sx={{
                 background: 'linear-gradient(135deg, #374049 50%, #495159 50%);',
-                // backgroundColor: 'black',
+                padding: '10px 30px 10px 50px',
+                font: 'Source Sans Pro,sans-serif',
             }}
         >
-            <Grid
-                container
-                justifyContent="space-between"
-                alignItems="center"
-                sx={{
-                    padding: '10px 30px 10px 50px',
-                    font: 'Source Sans Pro,sans-serif',
-                }}
-            >
-                <Link href='/' style={{ textDecoration: 'none' }}>
-                    <Grid item>
-                        {/* <Image width={108} height={60} alt=" " src={RMovie} /> */}
-                        <LiveTvIconBig></LiveTvIconBig>
-                        <Typography sx={{ fontSize: '15px', color: '#b01a4d', font: 'Monaco' }}>
-                            RMOVIE
-                        </Typography>
-                    </Grid>
-                </Link>
-                <Link
-                    href="/produkt/0-7-karat-diamant"
-                    sx={{ color: '#b01a4d' }}
-                    style={{ textDecoration: 'none' }}
-                >
-                    Acasa
-                </Link>
-                <Link
-                    href="/produkt/0-7-karat-diamant"
-                    sx={{ color: '#b01a4d' }}
-                    style={{ textDecoration: 'none' }}
-                >
-                    Filme
-                </Link>
-                <Link
-                    href="/produkt/0-7-karat-diamant"
-                    sx={{ color: '#b01a4d' }}
-                    style={{ textDecoration: 'none' }}
-                >
-                    Seriale
-                </Link>
-            </Grid>
+            <Link href='/' style={{ textDecoration: 'none' }}>
+                <Grid item>
+                    {/* <Image width={108} height={60} alt=" " src={RMovie} /> */}
+                    <LiveTvIconBig></LiveTvIconBig>
+                    <Typography sx={{ fontSize: '15px', color: '#b01a4d', font: 'Monaco' }}>
+                        RMovie
+                    </Typography>
+                </Grid>
+            </Link>
+            <Link href={'/contact'}>
+                <button className='background-color: rgb(176, 26, 77); text-white py-3 px-6 rounded text-sm mt-4'>CONTACT US</button>
+            </Link>
         </Grid>
     );
 }
