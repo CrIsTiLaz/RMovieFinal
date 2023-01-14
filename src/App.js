@@ -29,6 +29,7 @@ function App() {
       movie={movie}/>))
       
   )
+  
   console.log('movies', movies)
 
   return (
