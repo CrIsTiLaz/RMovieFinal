@@ -5,7 +5,7 @@ import MovieCard from "./components/MovieCard";
 
 function App() {
   const API_URL="https://api.themoviedb.org/3/"
-  const IMAGE_PATH = "https://image.tmdb.org/t/p/original"
+  const IMAGE_PATH2 = "https://image.tmdb.org/t/p/original"
   const [movies, setMovies] = useState([])
   const [selectedMovie, setSelectedMovie] = useState({})
   const [searchKey, setSearchKey] = useState("")
@@ -32,7 +32,9 @@ function App() {
     movies?.map(movie => (
     <MovieCard
       key={movie.id}
-      movie={movie}/>))
+      movie={movie}
+      selectedMovie={setSelectedMovie}
+      />))
       
   )
 
@@ -56,7 +58,7 @@ function App() {
         </div>
 
       </header>
-      <div className="hero" style={{backgroundImage: `url('${IMAGE_PATH}${selectedMovie.backdrop_path}')`}}>
+      <div className="hero" style={{backgroundImage: `url('${IMAGE_PATH2}${selectedMovie.backdrop_path}')`}}>
         <div className="hero-content max-center" >
           <button className={"button"}>Play Trailer</button>
           <h1 className={"hero-title"}>{selectedMovie.title}</h1>
