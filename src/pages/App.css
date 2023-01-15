@@ -1,9 +1,9 @@
 body {
   background-color: #090a0e;
-  color: white
+  color: white;
 }
 
-.max-center{
+.max-center {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
@@ -24,11 +24,11 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.movie-cover{
+.movie-cover {
   width: 100%;
 }
 
-.movie-placeholder{
+.movie-placeholder {
   min-height: 359px;
   background-color: white;
   color: #0f1014;
@@ -37,29 +37,29 @@ body {
   align-items: center;
 }
 
-.hero{
+.hero {
   min-height: 500px;
   background-position: top center;
-  background-size: cover;
+  background-size: 100% 500px;
   display: flex;
   align-items: flex-end;
 }
 
-.hero-content{
+.hero-content {
   max-width: 70%;
   padding-bottom: 60px;
 }
 
-.hero-title{
+.hero-title {
   font-size: 72px;
   margin: 0px;
 }
 
-.button{
+.button {
   background-color: #0f1014;
   color: white;
   border: none;
   outline: 1px solid white;
   padding: 10px 15px;
-  cursor: pointer
+  cursor: pointer;
 }
