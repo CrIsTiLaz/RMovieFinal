@@ -3,7 +3,6 @@ import "./loginStyle.css";
 import Layout from "../components/Layout";
 function RegisterForm() {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -13,7 +12,7 @@ function RegisterForm() {
       alert("Passwords do not match");
     } else {
       console.log("Username:", username);
-      console.log("Email:", email);
+      //   console.log("Email:", email);
       console.log("Password:", password);
 
       fetch("http://localhost:5000/register", {
@@ -26,7 +25,6 @@ function RegisterForm() {
         },
         body: JSON.stringify({
           username,
-          email,
           password,
         }),
       })
