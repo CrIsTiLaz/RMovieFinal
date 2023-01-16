@@ -90,23 +90,7 @@ export default function Header() {
           <LoginIcon></LoginIcon>
         </Link>
       </Grid>
-      <Grid item>
-        <Input
-          key={"sm"}
-          size={"sm"}
-          onChange={(e) => {
-            setMovie(e.target.value);
-          }}
-          onKeyPress={handleSubmit}
-          startDecorator={<SearchIconWhite></SearchIconWhite>}
-          placeholder="Search movie..."
-        />
-      </Grid>
-      <Link href={"/contact"}>
-        <button className="background-color: rgb(176, 26, 77); text-white py-3 px-6 rounded text-sm mt-4">
-          CONTACT US
-        </button>
-      </Link>
+      
     </Grid>
   );
 }

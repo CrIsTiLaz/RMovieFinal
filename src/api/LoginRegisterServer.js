@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 const axios = require("axios");
-
+require("./UserDetails");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 
@@ -27,8 +27,6 @@ mongoose
   })
   .catch((e) => console.log(e));
 
-require("./userDetails");
-
 const User = mongoose.model("UserInfo");
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -45,10 +43,21 @@ app.post("/register", async (req, res) => {
       password: encryptedPassword,
     });
     res.send({ status: "ok" });
+    // res.redirect("/login");
   } catch (error) {
     res.send({ status: "error" });
+    console.log(error);
   }
 });
+
+// app.use(function (req, res, next) {
+//   if (res.status(201)) {
+//     // if user is not logged-in redirect back to login page //
+//     res.redirect("/");
+//   } else {
+//     next();
+//   }
+// });
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -63,6 +72,8 @@ app.post("/login", async (req, res) => {
     });
 
     if (res.status(201)) {
+      // console.log("succes")
+      // return res.alert("succesful!");
       return res.json({ status: "ok", data: token });
     } else {
       return res.json({ error: "error" });
@@ -94,10 +105,6 @@ app.post("/userData", async (req, res) => {
         res.send({ status: "error", data: error });
       });
   } catch (error) {}
-});
-
-app.listen(5000, () => {
-  console.log("Server Started");
 });
 
 app.post("/forgot-password", async (req, res) => {
@@ -201,4 +208,8 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     console.log(error);
     res.json({ status: "Something Went Wrong" });
   }
+});
+
+app.listen(5000, () => {
+  console.log("Server Started");
 });

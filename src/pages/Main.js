@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import MovieCard from "../components/MovieCard";
 import Layout from "../components/Layout";
+import YouTube from "react-youtube"
 function App() {
   const API_URL = "https://api.themoviedb.org/3/";
   const IMAGE_PATH2 = "https://image.tmdb.org/t/p/original";
@@ -30,35 +31,63 @@ function App() {
     // console.log("data", data);
   };
 
+  const selectMovie= async (movie) =>{
+    const data = await fetchMovie(movie.id)
+    // console.log("movie data ", data);
+    setSelectedMovie(movie)
+  }
+
+  const fetchMovie = async(id)=>{
+    const {data} = await axios.get(`${API_URL}/movie/${id}`, {
+    params: {
+      api_key: process.env.REACT_APP_MOVIE_API_KEY,
+      append_to_response: 'videos'
+    }
+  })
+    return data;
+  }
+
   const renderMovies = () =>
-    movies?.map((movie) => (
+    movies.map((movie) => (
       <MovieCard
         key={movie.id}
         movie={movie}
-        selectedMovie={setSelectedMovie}
+        selectMovie={selectMovie}
       />
     ));
 
-  console.log("movies", movies);
+  // console.log("movies", movies);
 
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchKey);
   };
 
+  const renderTrailer = () =>{
+    const trailer = selectedMovie.videos.results.find(vid => vid.name === 'Official Trailer')
+    // const trailer = selectedMovie.videos.results
+    console.log( trailer)
+    return(
+      <YouTube
+        videoId={trailer.key}
+      />
+    )
+  }
+
   return (
     <Layout>
       <div className="App">
-        {/* <div className="header-content max-center"> */}
+        <div className="header-content">
         {/* <span>Hello YouTube</span> */}
-        {/* <form onSubmit={searchMovies}>
+        <form onSubmit={searchMovies}>
             <input
               type="text"
               onChange={(e) => setSearchKey(e.target.value)}
             ></input>
             <button type="submit">Search</button>
           </form>
-        </div>  */}
+          </div> 
+        </div>
         <div
           className="hero"
           style={{
@@ -66,7 +95,7 @@ function App() {
           }}
         >
           <div className="hero-content max-center">
-            <button className={"button"}>Play Trailer</button>
+            {selectedMovie.videos ? renderTrailer(): console.log(selectedMovie)}
             <h1 className={"hero-title"}>{selectedMovie.title}</h1>
             {selectedMovie.overview ? (
               <p className={"hero-overview"}>{selectedMovie.overview}</p>
@@ -74,7 +103,6 @@ function App() {
           </div>
         </div>
         <div className="container max-center">{renderMovies()}</div>
-      </div>
     </Layout>
   );
 }

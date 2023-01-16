@@ -27,6 +27,7 @@ function LoginForm() {
         console.log(data, "userRegister");
         if (data.status == "ok") {
           alert("login successful");
+          //   fetch("http://localhost:3000/");
           //   window.localStorage.setItem("token", data.data);
           //   window.location.href = "./userDetails";
         }

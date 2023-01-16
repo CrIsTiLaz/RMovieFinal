@@ -11,8 +11,9 @@ body {
 
 .header-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
+  margin-right: 30px;
 }
 
 .container {
@@ -40,7 +41,7 @@ body {
 .hero {
   min-height: 500px;
   background-position: top center;
-  background-size: 100% 500px;
+  background-size: 100% ;
   display: flex;
   align-items: flex-end;
 }
