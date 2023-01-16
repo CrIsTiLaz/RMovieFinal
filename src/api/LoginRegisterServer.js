@@ -7,6 +7,7 @@ app.use(cors());
 const bcrypt = require("bcryptjs");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
+const axios = require("axios");
 
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
@@ -143,7 +144,7 @@ app.post("/forgot-password", async (req, res) => {
 
 app.get("/reset-password/:id/:token", async (req, res) => {
   const { id, token } = req.params;
-  console.log(req.params);
+  //   console.log(req.params);
   const oldUser = await User.findOne({ _id: id });
   if (!oldUser) {
     return res.json({ status: "User Not Exists!!" });
@@ -156,6 +157,20 @@ app.get("/reset-password/:id/:token", async (req, res) => {
     console.log(error);
     res.send("Not Verified");
   }
+});
+
+const API_URL = "https://api.themoviedb.org/3/";
+app.get(`/search=?:movie`, async (req, res) => {
+  const { movie } = req.params;
+  const {
+    data: { results },
+  } = await axios.get(`${API_URL}/search/movie`, {
+    params: {
+      api_key: "cf2cfc67bb2935dfc0b2527444e892b5",
+      query: movie,
+    },
+  });
+  return results;
 });
 
 app.post("/reset-password/:id/:token", async (req, res) => {

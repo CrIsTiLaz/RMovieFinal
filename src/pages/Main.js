@@ -16,6 +16,7 @@ function App() {
 
   const fetchMovies = async (searchKey) => {
     const type = searchKey ? "search" : "discover";
+
     const {
       data: { results },
     } = await axios.get(`${API_URL}/${type}/movie`, {
@@ -48,16 +49,16 @@ function App() {
   return (
     <Layout>
       <div className="App">
-        <div className="header-content max-center">
-          {/* <span>Hello YouTube</span> */}
-          <form onSubmit={searchMovies}>
+        {/* <div className="header-content max-center"> */}
+        {/* <span>Hello YouTube</span> */}
+        {/* <form onSubmit={searchMovies}>
             <input
               type="text"
               onChange={(e) => setSearchKey(e.target.value)}
             ></input>
             <button type="submit">Search</button>
           </form>
-        </div>
+        </div>  */}
         <div
           className="hero"
           style={{

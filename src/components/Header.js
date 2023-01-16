@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Grid, Link, Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { alpha, styled } from "@mui/material/styles";
-import React from "react";
+import React, { useState } from "react";
 import Person from "@mui/icons-material/Person";
 import Button from "@mui/joy/Button";
 import Input from "@mui/joy/Input";
@@ -25,22 +25,42 @@ const LoginIcon = () => {
     </Button>
   );
 };
-function getQueryVariable(variable) {
-  var query = window.location.search.substring(1);
-  console.log(query); //"app=article&act=news_content&aid=160990"
-  var vars = query.split("&");
-  console.log(vars); //[ 'app=article', 'act=news_content', 'aid=160990' ]
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split("=");
-    console.log(pair); //[ 'app', 'article' ][ 'act', 'news_content' ][ 'aid', '160990' ]
-    if (pair[0] == variable) {
-      return pair[1];
-    }
-  }
-  return false;
-}
 
 export default function Header() {
+  const [movie, setMovie] = useState("avatar");
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  function handleSubmit(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      fetch("http://localhost:5000/search=", {
+        method: "GET",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        // body: JSON.stringify({
+        //   movie,
+        // }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data, "userRegister");
+          if (data.status == "ok") {
+            alert("login successful");
+            //   window.localStorage.setItem("token", data.data);
+            //   window.location.href = "./userDetails";
+          }
+        });
+    }
+  }
+
   return (
     <Grid
       container
@@ -74,7 +94,10 @@ export default function Header() {
         <Input
           key={"sm"}
           size={"sm"}
-          //   onChange={(e) => e}
+          onChange={(e) => {
+            setMovie(e.target.value);
+          }}
+          onKeyPress={handleSubmit}
           startDecorator={<SearchIconWhite></SearchIconWhite>}
           placeholder="Search movie..."
         />
