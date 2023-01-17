@@ -44,6 +44,7 @@ app.post("/register", async (req, res) => {
     });
     res.send({ status: "ok" });
     // res.redirect("/login");
+    res.redirect("/login");
   } catch (error) {
     res.send({ status: "error" });
     console.log(error);
@@ -75,6 +76,7 @@ app.post("/login", async (req, res) => {
       // console.log("succes")
       // return res.alert("succesful!");
       return res.json({ status: "ok", data: token });
+      return res.alert("succesful!");
     } else {
       return res.json({ error: "error" });
     }
